@@ -12,10 +12,11 @@ import AFNetworking
 import BDBOAuth1Manager
 
 // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
-let yelpConsumerKey = "vxKwwcR_NMQ7WaEiQBK_CA"
-let yelpConsumerSecret = "33QCvh5bIF5jIHR5klQr7RtBDhQ"
-let yelpToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
-let yelpTokenSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
+let yelpConsumerKey = "SHHP7EFpCciYUMDHVumqLA"
+let yelpConsumerSecret = "hIeHDz8zkpAxIcAymyfuXwx1ado"
+let yelpToken = "-5h3eV4W5GSuuovZuzgzG6f4Lk7-LoP9"
+let yelpTokenSecret = "MOZheIhfH7UrNTGlFYghpR3NFms"
+
 
 enum YelpSortMode: Int {
     case bestMatched = 0, distance, highestRated
@@ -65,7 +66,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
             parameters["deals_filter"] = deals! as AnyObject?
         }
         
-        print(parameters)
+        print("parameters \(parameters)")
         
         return self.get("search", parameters: parameters,
                         success: { (operation: AFHTTPRequestOperation, response: Any) -> Void in

@@ -12,6 +12,7 @@ class BusinessesViewController: UIViewController {
     
     var businesses: [Business]!
     
+    @IBOutlet weak var businessTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,9 +25,15 @@ class BusinessesViewController: UIViewController {
                     print(business.address!)
                 }
             }
+            self.businessTableView.reloadData()
             
             }
         )
+        
+        self.businessTableView.dataSource = self
+        self.businessTableView.estimatedRowHeight = 200
+        self.businessTableView.rowHeight = UITableViewAutomaticDimension
+        
         
         /* Example of Yelp search with more search options specified
          Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
@@ -55,5 +62,33 @@ class BusinessesViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+}
+
+
+// MARK: - UITableViewDataSource
+extension BusinessesViewController: UITableViewDataSource {
+    
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (businesses != nil) ? businesses.count : 0
+    }
+    
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessTableViewCell", for: indexPath) as! BusinessTableViewCell
+        
+        let business = businesses[indexPath.row]
+        
+        cell.nameLabel.text = business.name
+        cell.reviewCountLabel.text = "\(business.reviewCount!) reviews"
+        cell.addressLabel.text = business.address
+        cell.categoriesLabel.text = business.categories
+        return cell
+    }
+    
     
 }
