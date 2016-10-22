@@ -36,6 +36,11 @@
                                                         <constraint firstAttribute="width" secondItem="x3H-ZH-kJj" secondAttribute="height" multiplier="1:1" id="Mz7-po-rmd"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="The Codmother Fish" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9t-te-UjD">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mtQ-xc-Lac">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="132" id="hJR-sf-4bm"/>
@@ -43,50 +48,53 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="1234 reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nyg-q9-iPm">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2824 Jones St, North Beach" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2B-Dr-aJ6">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="American" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Zg-i4W">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="The Codmother Fish" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9t-te-UjD">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.8 mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgS-Zy-Wwb">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mtQ-xc-Lac" firstAttribute="leading" secondItem="x3H-ZH-kJj" secondAttribute="trailing" constant="8" id="3Md-gI-Ko1"/>
+                                                <constraint firstAttribute="trailing" secondItem="FgS-Zy-Wwb" secondAttribute="trailing" constant="8" id="9eW-yp-TQ5"/>
                                                 <constraint firstItem="c9t-te-UjD" firstAttribute="top" secondItem="Rjo-cn-eOQ" secondAttribute="topMargin" constant="8" id="B0x-Qj-Mpc"/>
                                                 <constraint firstItem="x3H-ZH-kJj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Rjo-cn-eOQ" secondAttribute="top" constant="1" id="Eom-cy-Yly"/>
                                                 <constraint firstItem="Nyg-q9-iPm" firstAttribute="centerY" secondItem="mtQ-xc-Lac" secondAttribute="centerY" id="FPH-hI-8Lo"/>
                                                 <constraint firstItem="x3H-ZH-kJj" firstAttribute="leading" secondItem="Rjo-cn-eOQ" secondAttribute="leadingMargin" constant="10" id="GmY-ej-yrP"/>
                                                 <constraint firstItem="NcX-Zg-i4W" firstAttribute="leading" secondItem="x3H-ZH-kJj" secondAttribute="trailing" constant="8" id="Il9-pH-CJ1"/>
+                                                <constraint firstItem="FgS-Zy-Wwb" firstAttribute="centerY" secondItem="c9t-te-UjD" secondAttribute="centerY" id="NWN-Hz-bRd"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="x3H-ZH-kJj" secondAttribute="bottom" constant="1" id="RNN-NG-nw4"/>
                                                 <constraint firstItem="Nyg-q9-iPm" firstAttribute="leading" secondItem="mtQ-xc-Lac" secondAttribute="trailing" constant="8" id="SWP-Ja-r6C"/>
                                                 <constraint firstItem="x2B-Dr-aJ6" firstAttribute="leading" secondItem="x3H-ZH-kJj" secondAttribute="trailing" constant="8" id="UeD-wh-LQj"/>
                                                 <constraint firstItem="NcX-Zg-i4W" firstAttribute="top" secondItem="x2B-Dr-aJ6" secondAttribute="bottom" constant="8" id="Wje-Xn-Vpa"/>
                                                 <constraint firstAttribute="bottom" secondItem="NcX-Zg-i4W" secondAttribute="bottom" constant="8" id="XjJ-0H-d1j"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="c9t-te-UjD" secondAttribute="trailing" constant="15" id="ap3-MY-OsZ"/>
                                                 <constraint firstItem="mtQ-xc-Lac" firstAttribute="top" secondItem="c9t-te-UjD" secondAttribute="bottom" constant="8" id="ax3-QL-pft"/>
                                                 <constraint firstItem="x2B-Dr-aJ6" firstAttribute="top" secondItem="mtQ-xc-Lac" secondAttribute="bottom" constant="8" id="fiI-2k-hpZ"/>
                                                 <constraint firstItem="mtQ-xc-Lac" firstAttribute="leading" secondItem="c9t-te-UjD" secondAttribute="leading" id="gQh-vo-7oy"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="x2B-Dr-aJ6" secondAttribute="trailing" constant="15" id="kJe-OE-ZBx"/>
                                                 <constraint firstItem="x3H-ZH-kJj" firstAttribute="centerY" secondItem="Rjo-cn-eOQ" secondAttribute="centerY" id="l3A-eW-7rP"/>
+                                                <constraint firstItem="FgS-Zy-Wwb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c9t-te-UjD" secondAttribute="trailing" constant="3" id="oIR-rh-2IP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addressLabel" destination="x2B-Dr-aJ6" id="tuj-0P-cOO"/>
                                             <outlet property="businessImageView" destination="x3H-ZH-kJj" id="6wD-ir-u9q"/>
                                             <outlet property="categoriesLabel" destination="NcX-Zg-i4W" id="SGY-eh-W7g"/>
+                                            <outlet property="distanceLabel" destination="FgS-Zy-Wwb" id="mJt-nE-BxU"/>
                                             <outlet property="nameLabel" destination="c9t-te-UjD" id="gFt-Nf-lkV"/>
                                             <outlet property="ratingImageView" destination="mtQ-xc-Lac" id="djB-16-MbY"/>
                                             <outlet property="reviewCountLabel" destination="Nyg-q9-iPm" id="05W-ah-Jzg"/>

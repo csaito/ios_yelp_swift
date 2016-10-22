@@ -13,6 +13,7 @@ class BusinessTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewCountLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var categoriesLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
