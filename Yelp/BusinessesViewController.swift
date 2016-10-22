@@ -87,6 +87,17 @@ extension BusinessesViewController: UITableViewDataSource {
         cell.reviewCountLabel.text = "\(business.reviewCount!) reviews"
         cell.addressLabel.text = business.address
         cell.categoriesLabel.text = business.categories
+        if let businessImageUrl = business.imageURL {
+            cell.businessImageView.setImageWith(businessImageUrl)
+        } else {
+            cell.businessImageView.image = nil
+        }
+        if let ratingImageUrl = business.ratingImageURL {
+            cell.ratingImageView.setImageWith(ratingImageUrl)
+        } else {
+            cell.ratingImageView.image = nil
+        }
+        
         return cell
     }
     
