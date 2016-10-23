@@ -7,7 +7,7 @@ import Foundation
 
 struct YelpSearchSettings {
     
-    var categories: [String]?
+    var categories = [String]()
     var deals = false
     var radius = 0.0
     var sort = YelpSortMode.bestMatched // 0 = Best Match, 1 = Distance, 2 = Highest rated

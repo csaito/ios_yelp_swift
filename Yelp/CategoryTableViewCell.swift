@@ -19,6 +19,16 @@ class CategoryTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    var category: [String: String]! {
+        didSet {
+            if let cat = category {
+                if (cat["name"]  != nil) {
+                    self.nameLabel.text = cat["name"]
+                }
+            }
+        }
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         //super.setSelected(selected, animated: animated)

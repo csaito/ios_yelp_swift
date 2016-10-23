@@ -124,8 +124,15 @@ extension FilterViewController: UITableViewDataSource {
     }
     
     func setCategoryTableCell(_ cell: CategoryTableViewCell, row: Int) {
-        if (row < self.searchSettings.allCategories.count) {
-            cell.nameLabel.text = self.searchSettings.allCategories[row]["name"]
+        //if (row < self.searchSettings.allCategories.count) {
+        cell.category = self.searchSettings.allCategories[row]
+        //}
+        let index =
+            (self.searchSettings.categories.index(of:self.searchSettings.allCategories[row]["code"]!))
+        if index != nil {
+            cell.onOffSwitch.isOn = true
+        } else {
+            cell.onOffSwitch.isOn = false
         }
         cell.switchDelegate = self
     }
@@ -165,9 +172,13 @@ extension FilterViewController: SortByButtonDelegate {
 
 extension FilterViewController: CategorySwitchDelegate {
     func categorySwitchDidToggle(_ cell: CategoryTableViewCell, newValue:Bool) {
+        let categoryCode = cell.category["code"]
         if (newValue == true) {
-            
+            self.searchSettings.categories.append(categoryCode!)
+        } else {
+            if let index = self.searchSettings.categories.index(of: categoryCode!) {
+                self.searchSettings.categories.remove(at: index)
+            }
         }
-        
     }
 }
