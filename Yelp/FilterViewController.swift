@@ -22,6 +22,9 @@ class FilterViewController: UIViewController {
     var selectedDistanceCell : DistanceTableViewCell?
     var selectedSortByCell   : SortByTableViewCell?
     
+    // Expandable cell
+    var distanceExpanded = false
+    
     @IBAction func onOffSwitchToggled(_ sender: AnyObject) {
     }
     
@@ -53,7 +56,9 @@ extension FilterViewController: UITableViewDataSource {
         var numOfRows = 1;
         switch section {
         case 0 : break
-        case 1: numOfRows = 6
+        case 1: if (self.distanceExpanded) {
+                numOfRows = 6
+            }
             break
         case 2: numOfRows = 3
             break
@@ -76,9 +81,15 @@ extension FilterViewController: UITableViewDataSource {
             returnCell = cell
             break
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DistanceTableCell", for: indexPath) as! DistanceTableViewCell
-            setDistanceTableCell(cell, row: indexPath.row)
-            returnCell = cell
+            if (self.distanceExpanded) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DistanceTableCell", for: indexPath) as! DistanceTableViewCell
+                setDistanceTableCell(cell, row: indexPath.row)
+                returnCell = cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ExpandableTableViewCell", for: indexPath) as! ExpandableTableViewCell
+                setExpandableTableCell(cell, indexPath: indexPath)
+                returnCell = cell
+            }
             break
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SortByTableCell", for: indexPath) as! SortByTableViewCell
@@ -114,7 +125,17 @@ extension FilterViewController: UITableViewDataSource {
         }
         cell.buttonDelegate = self
     }
-    
+    func setExpandableTableCell(_ cell: ExpandableTableViewCell, indexPath: IndexPath) {
+        cell.sectionNumber = indexPath.section
+        var labelText = "Auto"
+        if (self.searchSettings.radius == 1) {
+            labelText = "\(self.searchSettings.radius) mile"
+        } else if (self.searchSettings.radius != 0) {
+            labelText = "\(self.searchSettings.radius) miles"
+        }
+        cell.nameLabel.text = labelText
+        cell.cellSelectedDelegate = self
+    }
     func setSortByTableCell(_ cell: SortByTableViewCell, row: Int) {
         cell.sortMode = sortBySectionData[row]
         cell.isButtonSelected = (self.searchSettings.sort == cell.sortMode)
@@ -125,16 +146,11 @@ extension FilterViewController: UITableViewDataSource {
     }
     
     func setCategoryTableCell(_ cell: CategoryTableViewCell, row: Int) {
-        //if (row < self.searchSettings.allCategories.count) {
         cell.category = self.searchSettings.allCategories[row]
-        //}
         let index =
             (self.searchSettings.categories.index(of:self.searchSettings.allCategories[row]["code"]!))
-        if index != nil {
-            cell.onOffSwitch.isOn = true
-        } else {
-            cell.onOffSwitch.isOn = false
-        }
+        
+        cell.onOffSwitch.isOn = (index != nil)
         cell.switchDelegate = self
     }
 }
@@ -153,9 +169,12 @@ extension FilterViewController: DistanceButtonDelegate {
             }
             self.selectedDistanceCell = cell
             self.searchSettings.radius = cell.distanceInMiles
+
         } else {
             self.searchSettings.radius = 0.0
         }
+        self.distanceExpanded = false
+        self.filterTableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: UITableViewRowAnimation.bottom)
     }
 }
 
@@ -183,3 +202,11 @@ extension FilterViewController: CategorySwitchDelegate {
         }
     }
 }
+
+extension FilterViewController: CellSelectedDelegate {
+    func expandSection(_ cell: ExpandableTableViewCell, newValue:Bool) {
+        self.distanceExpanded = newValue
+        self.filterTableView.reloadSections(NSIndexSet(index: cell.sectionNumber) as IndexSet, with: UITableViewRowAnimation.top)
+    }
+}
+
