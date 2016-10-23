@@ -63,7 +63,7 @@ extension FilterViewController: UITableViewDataSource {
             break
         case 2: numOfRows = 3
             break
-        case 3: numOfRows = getCategoryTableCellCount() //YelpSearchSettings().allCategories.count
+        case 3: numOfRows = getCategoryTableCellCount()
             break
         default: break
         }
@@ -145,12 +145,12 @@ extension FilterViewController: UITableViewDataSource {
         cell.buttonDelegate = self
     }
     
-    func setCategoryTableCell(_ cell: CategoryTableViewCell, row: Int) {
-        cell.category = self.searchSettings.allCategories[row]
-        let index =
-            (self.searchSettings.categories.index(of:self.searchSettings.allCategories[row]["code"]!))
-        
-        cell.onOffSwitch.isOn = (index != nil)
+    func setCategoryTableCell(_ cell: CategoryTableViewCell, row: Int, category: [String: String]?) {
+        if (category != nil) {
+            cell.category = category!
+            cell.onOffSwitch.isOn = (
+                self.searchSettings.categories.index(of: category!["code"]!) != nil)
+        }
         cell.switchDelegate = self
     }
     
@@ -164,6 +164,7 @@ extension FilterViewController: UITableViewDataSource {
             returnValue = 4
         }
         
+        NSLog("getCategoryTableCellCount \(returnValue)")
         return returnValue
     }
     
@@ -171,16 +172,18 @@ extension FilterViewController: UITableViewDataSource {
         var returnCell = UITableViewCell()
         if (self.categoryExpanded) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableCell", for: indexPath) as! CategoryTableViewCell
-            setCategoryTableCell(cell, row: indexPath.row)
+            setCategoryTableCell(cell, row: indexPath.row, category: self.searchSettings.allCategories[indexPath.row])
             returnCell = cell
         } else {
-            var count = getCategoryTableCellCount()
+            let count = getCategoryTableCellCount()
             if (indexPath.row < (count-1)) {
-                
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableCell", for: indexPath) as! CategoryTableViewCell
-                setCategoryTableCell(cell, row: indexPath.row)
+                var category = self.searchSettings.allCategories[indexPath.row]
+                if (self.searchSettings.categories.count > 0) {
+                    category = findCategoryFor(self.searchSettings.categories[indexPath.row])
+                }
+                setCategoryTableCell(cell, row: indexPath.row, category: category)
                 returnCell = cell
-                
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreTableViewCell", for: indexPath) as! SeeMoreTableViewCell
                 cell.sectionNumber = indexPath.section
@@ -190,6 +193,15 @@ extension FilterViewController: UITableViewDataSource {
         }
         return returnCell
         
+    }
+    
+    func findCategoryFor(_ code: String) -> [String: String] {
+        for category in YelpSearchSettings().allCategories {
+            if category["code"] == code {
+                return category
+            }
+        }
+        return ["":""]
     }
 }
 

@@ -88,6 +88,7 @@
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="x2B-Dr-aJ6" secondAttribute="trailing" constant="15" id="kJe-OE-ZBx"/>
                                                 <constraint firstItem="x3H-ZH-kJj" firstAttribute="centerY" secondItem="Rjo-cn-eOQ" secondAttribute="centerY" id="l3A-eW-7rP"/>
                                                 <constraint firstItem="FgS-Zy-Wwb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c9t-te-UjD" secondAttribute="trailing" constant="3" id="oIR-rh-2IP"/>
+                                                <constraint firstAttribute="trailing" secondItem="NcX-Zg-i4W" secondAttribute="trailing" constant="8" id="vg7-dO-Vsd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
