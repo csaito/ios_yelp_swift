@@ -81,7 +81,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         }
         
         if (radius != nil && radius! > 0) {
-            parameters["radius_filter"] = radius! as AnyObject?
+            parameters["radius_filter"] = (radius! * 1609.34) as AnyObject?
         }
         
         NSLog("parameters \(parameters)");

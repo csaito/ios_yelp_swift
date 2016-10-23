@@ -74,6 +74,11 @@ class BusinessesViewController: UIViewController {
         }
     }
     
+    @IBAction func saveFilterAndSearch(segue: UIStoryboardSegue) {
+        self.searchSettings = (segue.source as! FilterViewController).searchSettings
+        doSearch(append: false)
+    }
+    
 }
 
 
