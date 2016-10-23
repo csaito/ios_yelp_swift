@@ -8,6 +8,8 @@
 
 import UIKit
 
+import CircularSpinner
+
 class BusinessesViewController: UIViewController {
     
     var businesses: [Business]!
@@ -30,6 +32,8 @@ class BusinessesViewController: UIViewController {
         searchBar.placeholder = "Restaurants"
         navigationItem.titleView = searchBar
         
+        CircularSpinner.trackBgColor = UIColor.red
+        
         doSearch(append: false)
     }
     
@@ -46,6 +50,9 @@ class BusinessesViewController: UIViewController {
             offset = self.businesses.count
         }
         self.searchSettings.offset = offset
+        if (!append) {
+            CircularSpinner.show(animated: true, type: CircularSpinnerType.indeterminate, showDismissButton: false, delegate: nil)
+        }
  
         Business.searchWithTerm(term: self.currentTerm,
                                 searchSettings: self.searchSettings,
@@ -60,6 +67,7 @@ class BusinessesViewController: UIViewController {
                                             self.searchedBusinesses = businesses
                                         }
                                         self.businessTableView.reloadData()
+                                        CircularSpinner.hide()
                 }
         )
         
