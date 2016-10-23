@@ -40,9 +40,20 @@ class SortByTableViewCell: UITableViewCell {
         super.layoutSubviews()
         self.sortByButton.layer.cornerRadius = 16
     }
+    
+    @IBAction func sortByButtonClicked(_ sender: AnyObject) {
+        if (!self.isButtonSelected) {
+            // Don't allow unselecting (we need one item to be selected at any given moment)
+            self.isButtonSelected = !self.isButtonSelected;
+            self.buttonDelegate?.sortByButtonDidToggle(self, newValue: self.isButtonSelected)
+        }
+    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        //super.setSelected(selected, animated: animated)
+    }
 
 }
 
 protocol SortByButtonDelegate: class {
-    func buttonDidToggle(_ cell: SortByTableViewCell, newValue:Bool)
+    func sortByButtonDidToggle(_ cell: SortByTableViewCell, newValue:Bool)
 }

@@ -16,7 +16,15 @@ class FilterViewController: UIViewController {
     var searchSettings = YelpSearchSettings()
     
     let sortBySectionData = [ YelpSortMode.bestMatched, YelpSortMode.distance, YelpSortMode.highestRated ]
-    let distanceSectionData = [ 0.3, 1, 3, 10, 25 ]
+    let distanceSectionData = [ 0, 0.3, 1, 3, 10, 25 ]
+    
+    // Radio button items
+    var selectedDistanceCell : DistanceTableViewCell?
+    var selectedSortByCell   : SortByTableViewCell?
+    
+    @IBAction func onOffSwitchToggled(_ sender: AnyObject) {
+    }
+    
     
     @IBAction func cancelClicked(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
@@ -44,7 +52,7 @@ extension FilterViewController: UITableViewDataSource {
         var numOfRows = 1;
         switch section {
         case 0 : break
-        case 1: numOfRows = 5
+        case 1: numOfRows = 6
             break
         case 2: numOfRows = 3
             break
@@ -95,22 +103,71 @@ extension FilterViewController: UITableViewDataSource {
     
     func setDealTableCell(_ cell: DealTableViewCell, row: Int) {
         cell.onOffSwitch.isOn = self.searchSettings.deals
+        cell.switchDelegate = self
     }
     func setDistanceTableCell(_ cell: DistanceTableViewCell, row: Int) {
         cell.distanceInMiles = distanceSectionData[row]
         cell.isButtonSelected = (self.searchSettings.radius == cell.distanceInMiles)
+        if (cell.isButtonSelected == true) {
+            self.selectedDistanceCell = cell
+        }
+        cell.buttonDelegate = self
     }
     
     func setSortByTableCell(_ cell: SortByTableViewCell, row: Int) {
         cell.sortMode = sortBySectionData[row]
         cell.isButtonSelected = (self.searchSettings.sort == cell.sortMode)
+        if (cell.isButtonSelected == true) {
+            self.selectedSortByCell = cell
+        }
+        cell.buttonDelegate = self
     }
     
     func setCategoryTableCell(_ cell: CategoryTableViewCell, row: Int) {
         if (row < self.searchSettings.allCategories.count) {
             cell.nameLabel.text = self.searchSettings.allCategories[row]["name"]
         }
+        cell.switchDelegate = self
     }
-    
-    
+}
+
+extension FilterViewController: DealSwitchDelegate {
+    func switchDidToggle(_ cell: DealTableViewCell, newValue:Bool) {
+        self.searchSettings.deals = newValue
+    }
+}
+
+extension FilterViewController: DistanceButtonDelegate {
+    func distanceButtonDidToggle(_ cell: DistanceTableViewCell, newValue:Bool){
+        if (newValue == true) {
+            if let currentCell = self.selectedDistanceCell {
+                currentCell.isButtonSelected = false
+            }
+            self.selectedDistanceCell = cell
+            self.searchSettings.radius = cell.distanceInMiles
+        } else {
+            self.searchSettings.radius = 0.0
+        }
+    }
+}
+
+extension FilterViewController: SortByButtonDelegate {
+    func sortByButtonDidToggle(_ cell: SortByTableViewCell, newValue:Bool){
+        if (newValue == true) {
+            if let currentCell = self.selectedSortByCell {
+                currentCell.isButtonSelected = false
+            }
+            self.selectedSortByCell = cell
+            self.searchSettings.sort = cell.sortMode
+        }
+    }
+}
+
+extension FilterViewController: CategorySwitchDelegate {
+    func categorySwitchDidToggle(_ cell: CategoryTableViewCell, newValue:Bool) {
+        if (newValue == true) {
+            
+        }
+        
+    }
 }

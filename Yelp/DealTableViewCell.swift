@@ -18,9 +18,13 @@ class DealTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    @IBAction func onOffSwitchToggled(_ sender: AnyObject) {
+        self.switchDelegate?.switchDidToggle(self, newValue: onOffSwitch.isOn)
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        //super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
 

@@ -17,8 +17,12 @@ class DistanceTableViewCell: UITableViewCell {
     
     var distanceInMiles: Double! {
         didSet {
-            let suffix = (distanceInMiles! == 0) ? " mile" : " miles"
-            distanceLabel?.text = "\(distanceInMiles!)" + suffix
+            if (distanceInMiles == 0) {
+                distanceLabel.text = "Auto"
+            } else {
+                let suffix = (distanceInMiles! == 1) ? " mile" : " miles"
+                distanceLabel?.text = "\(distanceInMiles!)" + suffix
+            }
         }
     }
     
@@ -28,24 +32,23 @@ class DistanceTableViewCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        //super.setSelected(selected, animated: animated)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.distanceButton.layer.cornerRadius = 16
     }
+    
+    @IBAction func buttonClicked(_ sender: AnyObject) {
+        self.isButtonSelected = !isButtonSelected;
+        self.buttonDelegate?.distanceButtonDidToggle(self, newValue: self.isButtonSelected)
+    }
 
 }
 
 protocol DistanceButtonDelegate: class {
-    func buttonDidToggle(_ cell: DistanceTableViewCell, newValue:Bool)
+    func distanceButtonDidToggle(_ cell: DistanceTableViewCell, newValue:Bool)
 }
