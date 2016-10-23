@@ -25,5 +25,10 @@ class BusinessTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.businessImageView.layer.cornerRadius = 8
+        self.businessImageView.clipsToBounds = true;
+    }
 }

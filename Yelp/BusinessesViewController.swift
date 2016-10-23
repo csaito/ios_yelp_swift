@@ -14,6 +14,7 @@ class BusinessesViewController: UIViewController {
     var searchedBusinesses: [Business]!
     var searchBar: UISearchBar!
     var searchSettings = YelpSearchSettings()
+    var currentTerm = ""
     
     @IBOutlet weak var businessTableView: UITableView!
     override func viewDidLoad() {
@@ -32,33 +33,12 @@ class BusinessesViewController: UIViewController {
         
         doSearch(append: false)
         
-        /* Example of Yelp search with more search options specified
-         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-         self.businesses = businesses
-         
-         for business in businesses {
-         print(business.name!)
-         print(business.address!)
-         }
-         }
-         */
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     // Perform the search.
     fileprivate func doSearch(append: Bool) {
@@ -67,13 +47,10 @@ class BusinessesViewController: UIViewController {
         if (self.businesses != nil && append) {
             offset = self.businesses.count
         }
-        
-        Business.searchWithTerm(term: "Thai",
-                                    sort: nil,
-                                    categories: nil,
-                                    deals: nil,
-                                    limit: 20,
-                                    offset: offset,
+        self.searchSettings.offset = offset
+ 
+        Business.searchWithTerm(term: self.currentTerm,
+                                searchSettings: self.searchSettings,
                                     completion: { (businesses: [Business]?, error: Error?) -> Void in
                                         if (offset != 0) {
                                             if let unwrappedBusinesses = businesses {
@@ -150,21 +127,26 @@ extension BusinessesViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
+        self.currentTerm = ""
         searchBar.resignFirstResponder()
         self.searchedBusinesses = self.businesses
         businessTableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchSettings.nameFilter = searchBar.text
+        if !((searchBar.text?.isEmpty)!) {
+            self.currentTerm = searchBar.text!
+            doSearch(append: false)
+        } else {
+            self.currentTerm = ""
+        }
         searchBar.resignFirstResponder()
-        doSearch(append: false)
     }
     
     // This method updates filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // When there is no text, filteredData is the same as the original data
-        if searchText.isEmpty {
+        if (searchBar.text?.isEmpty)! {
             self.searchedBusinesses = self.businesses
         } else {
             var filteredData = [Business]()
