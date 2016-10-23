@@ -20,7 +20,6 @@ class BusinessesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         self.businessTableView.dataSource = self
         self.businessTableView.estimatedRowHeight = 200
         self.businessTableView.rowHeight = UITableViewAutomaticDimension
@@ -32,7 +31,6 @@ class BusinessesViewController: UIViewController {
         navigationItem.titleView = searchBar
         
         doSearch(append: false)
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,6 +63,15 @@ class BusinessesViewController: UIViewController {
                 }
         )
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue,
+                          sender: Any?) {
+        if segue.identifier == "ShowFilterControllerSegue" {
+            let navigationController = segue.destination as! UINavigationController
+            let filterViewController = navigationController.viewControllers[0] as! FilterViewController
+            filterViewController.searchSettings = self.searchSettings
+        }
     }
     
 }

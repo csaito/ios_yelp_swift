@@ -9,7 +9,7 @@ struct YelpSearchSettings {
     
     var categories: [String]?
     var deals = false
-    var radius = 0
+    var radius = 0.0
     var sort = YelpSortMode.bestMatched // 0 = Best Match, 1 = Distance, 2 = Highest rated
     var limit = 20
     var offset = 0
