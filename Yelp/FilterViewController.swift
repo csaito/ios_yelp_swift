@@ -24,6 +24,7 @@ class FilterViewController: UIViewController {
     
     // Expandable cell
     var distanceExpanded = false
+    var categoryExpanded = false
     
     @IBAction func onOffSwitchToggled(_ sender: AnyObject) {
     }
@@ -62,7 +63,7 @@ extension FilterViewController: UITableViewDataSource {
             break
         case 2: numOfRows = 3
             break
-        case 3: numOfRows = YelpSearchSettings().allCategories.count
+        case 3: numOfRows = getCategoryTableCellCount() //YelpSearchSettings().allCategories.count
             break
         default: break
         }
@@ -97,8 +98,7 @@ extension FilterViewController: UITableViewDataSource {
             returnCell = cell
             break
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableCell", for: indexPath) as! CategoryTableViewCell
-            setCategoryTableCell(cell, row: indexPath.row)
+            let cell = getCategoryCell(tableView, indexPath: indexPath)
             returnCell = cell
             break
         default: break
@@ -152,6 +152,44 @@ extension FilterViewController: UITableViewDataSource {
         
         cell.onOffSwitch.isOn = (index != nil)
         cell.switchDelegate = self
+    }
+    
+    func getCategoryTableCellCount() -> Int {
+        var returnValue = 1
+        if (self.categoryExpanded) {
+            returnValue = YelpSearchSettings().allCategories.count
+        } else if (self.searchSettings.categories.count > 0) {
+            returnValue = self.searchSettings.categories.count + 1
+        } else {
+            returnValue = 4
+        }
+        
+        return returnValue
+    }
+    
+    func getCategoryCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        var returnCell = UITableViewCell()
+        if (self.categoryExpanded) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableCell", for: indexPath) as! CategoryTableViewCell
+            setCategoryTableCell(cell, row: indexPath.row)
+            returnCell = cell
+        } else {
+            var count = getCategoryTableCellCount()
+            if (indexPath.row < (count-1)) {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableCell", for: indexPath) as! CategoryTableViewCell
+                setCategoryTableCell(cell, row: indexPath.row)
+                returnCell = cell
+                
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreTableViewCell", for: indexPath) as! SeeMoreTableViewCell
+                cell.sectionNumber = indexPath.section
+                cell.seeMoreCellDelegate = self
+                returnCell = cell
+            }
+        }
+        return returnCell
+        
     }
 }
 
@@ -209,4 +247,12 @@ extension FilterViewController: CellSelectedDelegate {
         self.filterTableView.reloadSections(NSIndexSet(index: cell.sectionNumber) as IndexSet, with: UITableViewRowAnimation.top)
     }
 }
+
+extension FilterViewController: SeeMoreCellDelegate {
+    func expandSeeMoreSection(_ cell: SeeMoreTableViewCell, newValue:Bool) {
+        self.categoryExpanded = newValue
+        self.filterTableView.reloadSections(NSIndexSet(index: cell.sectionNumber) as IndexSet, with: UITableViewRowAnimation.top)
+    }
+}
+
 
