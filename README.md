@@ -25,19 +25,19 @@ The following **optional** features are implemented:
    - [x] Infinite scroll for restaurant results.
    - [ ] Implement map view of restaurant results.
 - [x] Filter page
-   - [x] Implement a custom switch instead of the default UISwitch. (UI Button mock)
+   - [x] Implement a custom switch instead of the default UISwitch. (? UI Button mock)
    - [x] Distance filter should expand as in the real Yelp app
    - [x] Categories should show a subset of the full list with a "See All" row to expand. Category list is [here](http://www.yelp.com/developers/documentation/category_list).
-- [ ] Implement the restaurant detail page.
+- [x] Implement the restaurant detail page.
 
 The following **additional** features are implemented:
 
-- [x] Category list shows selected items in the shrunk state
+- [x] Category list shows selected items in the shrunk state, if available
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1. Many custom delegates that perform almost identical tasks
-2. How to debug crash effectively
+2. How to customizing table view look (such as section header, border around cell etc)
 
 ## Video Walkthrough
 
