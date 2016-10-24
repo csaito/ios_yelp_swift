@@ -8,6 +8,45 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Name-->
+        <scene sceneID="Xkj-GR-PLD">
+            <objects>
+                <viewController id="OXg-z0-Tc0" customClass="DetailsViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FMB-8Q-qMS"/>
+                        <viewControllerLayoutGuide type="bottom" id="zEH-r3-p7H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Z1-AO-rKR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D74-Zk-aB7">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="D74-Zk-aB7" firstAttribute="leading" secondItem="0Z1-AO-rKR" secondAttribute="leadingMargin" id="3MH-L9-uV4"/>
+                            <constraint firstItem="zEH-r3-p7H" firstAttribute="top" secondItem="D74-Zk-aB7" secondAttribute="bottom" id="Djf-EB-i7O"/>
+                            <constraint firstItem="D74-Zk-aB7" firstAttribute="top" secondItem="FMB-8Q-qMS" secondAttribute="bottom" id="kFm-Bd-ufl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="D74-Zk-aB7" secondAttribute="trailing" id="sHV-eb-VXi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Name" id="i5d-XN-prH">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="OtW-dP-Gnp">
+                            <connections>
+                                <action selector="backPressed:" destination="OXg-z0-Tc0" id="2kG-OX-kzJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="businessWebView" destination="D74-Zk-aB7" id="Snp-43-Ucj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="apu-bQ-WVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4632.8000000000002" y="-194.75262368815595"/>
+        </scene>
         <!--Businesses View Controller-->
         <scene sceneID="5L9-Uz-lNK">
             <objects>
@@ -99,6 +138,7 @@
                                             <outlet property="nameLabel" destination="c9t-te-UjD" id="gFt-Nf-lkV"/>
                                             <outlet property="ratingImageView" destination="mtQ-xc-Lac" id="djB-16-MbY"/>
                                             <outlet property="reviewCountLabel" destination="Nyg-q9-iPm" id="05W-ah-Jzg"/>
+                                            <segue destination="Wav-8I-pDy" kind="presentation" identifier="DetailsSegue" id="Fgu-Mm-JhM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -143,10 +183,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DealTableCell" id="P2j-Rf-lrL" customClass="DealTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P2j-Rf-lrL" id="bM7-pb-cjF">
-                                            <frame key="frameInset" width="355" height="43"/>
+                                            <frame key="frameInset" width="1000" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rBf-32-KGa">
@@ -174,10 +214,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DistanceTableCell" id="Onv-ti-Rxs" customClass="DistanceTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="136" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="136" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Onv-ti-Rxs" id="gew-qq-tVT">
-                                            <frame key="frameInset" width="355" height="43"/>
+                                            <frame key="frameInset" width="1000" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxC-4l-l8f">
@@ -209,10 +249,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SortByTableCell" id="PEW-tr-Q2r" customClass="SortByTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="180" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="180" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PEW-tr-Q2r" id="iZc-xJ-bxY">
-                                            <frame key="frameInset" width="355" height="43"/>
+                                            <frame key="frameInset" width="1000" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8w-ZY-LbV">
@@ -244,10 +284,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryTableCell" id="KLg-DR-UlQ" customClass="CategoryTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="224" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="224" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KLg-DR-UlQ" id="Dak-32-2Ip">
-                                            <frame key="frameInset" width="355" height="43"/>
+                                            <frame key="frameInset" width="1000" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afghan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEQ-Qp-koi">
@@ -275,10 +315,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExpandableTableViewCell" id="8HW-BN-gzB" customClass="ExpandableTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="268" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="268" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8HW-BN-gzB" id="fJz-oS-BXE">
-                                            <frame key="frameInset" width="355" height="43"/>
+                                            <frame key="frameInset" width="1000" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUC-wO-Itw">
@@ -305,10 +345,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SeeMoreTableViewCell" id="doH-hl-3Cg" customClass="SeeMoreTableViewCell" customModule="Yelp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="312" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="312" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="doH-hl-3Cg" id="89E-0d-ze0">
-                                            <frame key="frameInset" width="355" height="43"/>
+                                            <frame key="frameInset" width="1000" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd1-YC-YkP">
@@ -393,7 +433,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMS-p3-H6M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3709.5999999999999" y="365.66716641679164"/>
+            <point key="canvasLocation" x="5588" y="365.66716641679164"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PPl-lU-kNb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wav-8I-pDy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="E6q-k4-ytx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.050883636810000001" blue="0.040547671760000001" alpha="0.7004291373" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OXg-z0-Tc0" kind="relationship" relationship="rootViewController" id="NjZ-6Y-h2c"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orU-Ec-s4u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3693.5999999999999" y="-194.75262368815595"/>
         </scene>
     </scenes>
     <resources>

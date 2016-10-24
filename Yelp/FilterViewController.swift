@@ -164,7 +164,6 @@ extension FilterViewController: UITableViewDataSource {
             returnValue = 4
         }
         
-        NSLog("getCategoryTableCellCount \(returnValue)")
         return returnValue
     }
     

@@ -16,6 +16,8 @@ class Business: NSObject {
     let distance: String?
     let ratingImageURL: URL?
     let reviewCount: NSNumber?
+    let businessURL: URL?
+    let businessMobileURL: URL?
     
     init(dictionary: NSDictionary) {
         
@@ -75,6 +77,21 @@ class Business: NSObject {
         }
         
         reviewCount = dictionary["review_count"] as? NSNumber
+        
+        let businessURLString = dictionary["url"] as? String
+        if businessURLString != nil {
+            businessURL = URL(string: businessURLString!)!
+        } else {
+            businessURL = nil
+        }
+        
+        let mobileURLString = dictionary["mobile_url"] as? String
+        if mobileURLString != nil {
+            businessMobileURL = URL(string: mobileURLString!)!
+        } else {
+            businessMobileURL = nil
+        }
+        
     }
     
     class func businesses(array: [NSDictionary]) -> [Business] {

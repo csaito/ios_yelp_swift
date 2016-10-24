@@ -33,6 +33,7 @@ class BusinessesViewController: UIViewController {
         navigationItem.titleView = searchBar
         
         CircularSpinner.trackBgColor = UIColor.red
+        CircularSpinner.trackPgColor = UIColor.lightGray
         
         doSearch(append: false)
     }
@@ -79,6 +80,11 @@ class BusinessesViewController: UIViewController {
             let navigationController = segue.destination as! UINavigationController
             let filterViewController = navigationController.viewControllers[0] as! FilterViewController
             filterViewController.searchSettings = self.searchSettings
+        } else if segue.identifier == "DetailsSegue" {
+            let navigationController = segue.destination as! UINavigationController
+            let detailsViewController = navigationController.viewControllers[0] as! DetailsViewController
+            let selectedIndex = businessTableView.indexPath(for: sender as! UITableViewCell)!
+            detailsViewController.business = self.searchedBusinesses![selectedIndex.row]
         }
     }
     
